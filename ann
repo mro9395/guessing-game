@@ -1,0 +1,14 @@
+X = data.loc[:,importantQuestion_name_list].values
+
+scaler = StandardScaler()
+scaler.fit(X)
+X = scaler.transform(X)
+clf = MLPClassifier(solver='adam', learning_rate='adaptive', alpha = 0, hidden_layer_sizes=(1000,), max_iter=500)
+
+clf.fit(X, target)
+print clf.score(X, target)
+
+scaler.fit(answers)
+answers = scaler.transform(answers)
+
+y = clf.predict(answers)[0]
